@@ -19,7 +19,7 @@
 \usepackage{nameref} % name refs
 
 
-\title{CS 470 Final Project}
+\title{CS 470 Final Project: Citi Bike}
 \author{Samantha Lin, Yuritzy Ramos, Matthew Joeseop, Ruilin Chen}
 
 \begin{document}
@@ -28,85 +28,142 @@
 \section{Collaboration Statement}
 I did not collaborate with anyone, receive any assistance nor use any external sources not cited below.
 
-\section{Problem}
+\section{Problem Description}
 %  Describe the problem that you are trying to solve in this project, and the goals you want to achieve
-\textbf{Page Rank: Upgrade and Expand or Retire?}
-\newline 
-Our team hopes to classify the relative importance/popularity of different bike stations given in the data based on how frequently they appear as start and end destinations for different trips. There were two methods to approach this. First, we could construct a MultiDigraph from the data which would allow for multiple edges between nodes (i.e., five people took a trip from station 380 to 250). This would give a more realistic outcome about a station's usage based on user transactions/trips. However, including these edges may be redundant since they represent the same path/route and will result in the page rank scores of each station being lower. The second method is to use a DiGraph which ignores multiple edges between nodes. This means that it only adds an edge between nodes once, even if the edge appears multiple times in the data. This would result in a page rank outcome based on the stations’  interconnectivity rather than how many customers frequent a specific route. This would allow us to observe which stations have the most in-coming links/trips from other stations and how this impacts their importance in the network. We expect there to be a group of stations with higher levels of importance than others and hope to use this information to determine which stations should be expanded/upgraded to increase customer usage. This information could also be used to determine which stations are less frequented and should be removed from the network (i.e., retiring the station).
+Citi Bike is a bikeshare program with 750+ stations across NYC. Users can temporarily rent a bike from one station and return to any other station for a single ride (3o mins) or for a longer period with a 24-hour day pass or annual membership.
+
+\subsection{Link Analysis: Upgrade and Expand or Retire?}
+Our team hopes to classify the relative importance/popularity of different bike stations given in the data based on how frequently they appear as start and end destinations for different trips. There were two methods to approach this. First, we could construct a MultiDigraph from the data which would allow for multiple edges between nodes (i.e., five people took a trip from station 380 to 250). This would give a more realistic outcome about a station's usage based on user transactions/trips. However, including these edges may be redundant since they represent the same path/route and will result in the page rank scores of each station being lower. The second method is to use a DiGraph which ignores multiple edges between nodes. This means that it only adds an edge between nodes once, even if the edge appears multiple times in the data. This would result in a page rank outcome based on the stations’ interconnectivity rather than how many customers frequent a specific route. This would allow us to observe which stations have the most in-coming links/trips from other stations and how this impacts their importance in the network. We expect there to be a group of stations with higher levels of importance than others and hope to use this information to determine which stations should be expanded/upgraded to increase customer usage. This information could also be used to determine which stations are less frequented and should be removed from the network (i.e., demolishing or selling the station). 
+
+\subsection{Clustering Analysis: What Kind of Trips Do People Take?}
+Our team hopes to identify if
+
 \section{Dataset}
+We got the dataset from Kaggle called \href{https://www.kaggle.com/datasets/fatihb/citibike-sampled-data-2013-2017?resource=download}{Citi Bike 2013-2017}. This dataset is a randomly sampled 0.01 of the \href{https://citibikenyc.com/system-data}{data on Citi Bike} representative of the 2013-2017 period. We only used the trip dataset which has 16 features and 473,557 trips:
+\begin{itemize}
+    \item Trip Duration (seconds)
+    \item Start/Stop Time and Date (NYC local time)
+    \item Start/End Station Name and ID
+    \item Start/End Station Lat/Long
+    \item Bike ID
+    \item User Type (Customer = single ride or day pass user; Subscriber = Annual Member)
+    \item Year of Birth of user
+    \item Gender (0=unknown; 1=male; 2=female)
+\end{itemize}
 
 \section{Preprocessing}
+\subsection{Trips Data}
+For the trips data, we had to preprocess many of the variables to have numerical attributes that we could use for a clustering algorithm. We did this to attempt to answer the question: what are the most frequent kinds of trips being taken, and by whom? This information could then be used to help all kinds of business functions on the part of Citi Bike. 
+
+We did the following preprocessing steps:
+\begin{itemize}
+    \item From starttime and stoptime, we extracted an attribute called "hours\_start 
+\end{itemize}
+
 
 \section{Methods}
-\textbf{Page Rank: NetworkX vs. MDD Implementation}
-\newline
-We used PageRank to rank the stations by level of importance in the network. Page Rank is frequently used to determine the importance of web pages based on the number and weight of incoming-links from other web pages. In our case, stations serve as web pages and trips serve as links between them. Stations with more incoming-links are expected to have a higher ranking; however, links from stations that have high rankings will boost the page rank score of the stations they point to.
-\newline
-We decided to use the page rank function from NetworkX since it can take both DiGraphs and MultiDiGraphs as inputs. By default, the page rank algorithm in NetworkX uses a dampening factor of 0.85 and a maximum of 1000 iterations. For comparison, we also used the page rank implementation from the Mining of Massive Datasets (MMD) textbook to obtain page rank scores for each station. Similar to the NetworkX page rank implementation, we used a dampening factor of 0.85  and a maximum of 1000 iterations.
+\subsection{K-Means Clustering Using sklearn}
+To implement k-means clustering, we used to 
 
+\begin{figure}[h!]
+    \centering
+    \caption{Increasing \textit{k} clusters plotted against SSE of clusters.}
+    \includegraphics[scale = 0.8]{elbow.png}    
+    \label{fig:my_label}
+\end{figure}
+
+
+\subsection{Page Rank: NetworkX vs. MDD Implementation}
+We used PageRank to rank the stations by level of importance in the network. Page Rank is frequently used to determine the importance of web pages based on the number and weight of incoming-links from other web pages. In our case, stations serve as web pages and trips serve as links between them. Stations with more incoming-links are expected to have a higher ranking; however, links from stations that have high rankings will boost the page rank score of the stations they point to. 
+\newline
+We decided to use the page rank function from NetworkX since it can take both DiGraphs and MultiDiGraphs as inputs. By default, the page rank algorithm in NetworkX uses a dampening factor of 0.85 and a maximum of 1000 iterations. For comparison, we also used the page rank implementation from the Mining of Massive Datasets (MMD) textbook to obtain page rank scores for each station. Similar to the NetworkX page rank implementation, we used a dampening factor of 0.85  and a maximum of 1000 iterations. 
 
 \section{Results}
+\subsection{K-Means Clustering}
+asdasd
+
+
+asdasd 
+
+\begin{table}[h!]
+\caption{Cluster Means for $k = 3$}
+\centering
+
+\begin{tabular}{||lrrrrr||}
+
+\hline
+{} &  tripduration &  birth\_year &  hour\_start &  is\_subscriber &     is\_female \\
+\hline
+0 &      0.000359 &    0.792675 &    0.603907 &   1.000000 &  $7.052692e^{-14}$ \\
+1 &      0.000423 &    0.806381 &    0.604518 &   1.000000 &  1.000000 \\
+2 &      0.000992 &    0.799334 &    0.630002 &   $8.115730e^{-14}$ &  $2.280769e^{-02}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{PageRank Results}
 For the NetworkX implementation of page rank,  the start and end station IDs for each trip were obtained from the data set. These were stored in a tuple of form (start, end) and appended to a list of edges for later use. Once all trips were stored, the edges were added to either a NetworkX Digraph or MultiDigraph. The main difference between the two is that whole MultiDiGraph allows for multiple edges between nodes, DiGraph only counts the appearance of an edge once. The resulting graph was then passed to the NetworkX page rank function with dampening parameter of 0.85 and max iterations 1000. The page rank scores  were sorted in descending order and the station IDs were sorted in ascending order. The top 10 results for the graphs with and without duplicate edges can be found in the tables below: 
 \begin{table}[h!]
-\caption{Page Rank Results for Stations (Duplicate Edges)}
+\caption{NetworkX Page Rank Results for Stations (Duplicate Edges)}
 \centering
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c||} 
  \hline
- Station & Page Rank \\ [0.5ex] 
+ Station Name & Station ID & Page Rank \\ [0.5ex] 
  \hline\hline
- 519 & 0.00629\\ 
- 497 & 0.00563\\
- 426 & 0.00503\\ 
- 435 & 0.00489\\
- 293 & 0.00475\\
- 387 & 0.00468\\
- 402 & 0.004619\\
- 151 & 0.004617\\
- 499 & 0.00430\\
- 285 & 0.00425\\[1ex] 
+ Pershing Square N & 519 & 0.00629\\ 
+ E 17 St \& Broadway & 497 & 0.00563\\
+ West St \& Chambers St & 426 & 0.00503\\ 
+ W 21 St \& 6 Ave & 435 & 0.00489\\
+ Lafayette St \& E 8 St & 293 & 0.00475\\
+ Centre St \& Chambers St & 387 & 0.00468\\
+ Broadway \& E 22 St & 402 & 0.004619\\
+ Cleveland Pl \& Spring St & 151 & 0.004617\\
+ Broadway \& W 60 St & 499 & 0.00430\\
+ Broadway \& E 14 St & 285 & 0.00425\\[1ex] 
  \hline
  \end{tabular}
  \end{table}
 
  \begin{table}[h!]
-\caption{Page Rank Results for Stations (No Duplicate Edges)}
+\caption{NetworkX Page Rank Results for Stations (No Duplicate Edges)}
 \centering
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c||} 
  \hline
- Station & Page Rank \\ [0.5ex] 
+Station Name & Station ID & Page Rank \\ [0.5ex] 
  \hline\hline
- 151 & 0.00298\\ 
- 519 & 0.00291\\
- 497 & 0.00289\\ 
- 532 & 0.002762\\
- 499 & 0.00269581\\
- 387 & 0.002623\\
- 251 & 0.002603\\
- 402 & 0.0025953\\
- 323 & 0.0025923\\
- 293 & 0.002586\\[1ex] 
+  Cleveland Pl \& Spring St & 151 & 0.00298\\ 
+ Pershing Square N & 519 & 0.00291\\
+ E 17 St \& Broadway & 497 & 0.00289\\ 
+ S 5 Pl \& S 4 St & 532 & 0.002762\\
+ Broadway \& W 60 St & 499 & 0.00269581\\
+ Centre St \& Chambers St & 387 & 0.002623\\
+ Mott St \& Prince St & 251 & 0.002603\\
+ Broadway \& E 22 St & 402 & 0.0025953\\
+ Lawrence St \& Willoughby St & 323 & 0.0025923\\
+ Lafayette St \& E 8 St & 293 & 0.002586\\[1ex] 
  \hline
  \end{tabular}
  \end{table}
 For the MMD implementation of page rank, two separate dot files were created as input. One is a dot file with all 473,556 edges between the 840 nodes and the other contains no duplicate edges, reducing the number of edges to 107,649. The page rank scores (with dampening factor 0.85 and max iteration 1000) were sorted in descending order and the station IDs were sorted in ascending order. The top 10 results for the graphs with and without duplicate edges can be found in the tables below: 
-
 \begin{table}[h!]
 \caption{Page Rank Results for Stations (Duplicate Edges)}
 \centering
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c||} 
  \hline
- Station & Page Rank \\ [0.5ex] 
+ Station Name & Station ID & Page Rank \\ [0.5ex] 
  \hline\hline
- 151 & 0.002991\\ 
- 519 & 0.002913\\
- 497 & 0.00288951\\ 
- 532 & 0.002761\\
- 499 & 0.002670\\
- 387 & 0.002626\\
- 251 & 0.002610\\
- 402 & 0.0025997\\
- 323 & 0.002593\\
- 293 & 0.002592\\[1ex] 
+ Cleveland Pl \& Spring St & 151 & 0.002991\\ 
+ Pershing Square N & 519 & 0.002913\\
+ E 17 St \& Broadway & 497 & 0.00288951\\ 
+ S 5 Pl \& S 4 St & 532 & 0.002761\\
+ Broadway \& W 60 St & 499 & 0.002670\\
+ Centre St \& Chambers St & 387 & 0.002626\\
+ Mott St \& Prince St & 251 & 0.002610\\
+ Broadway \& E 22 St & 402 & 0.0025997\\
+ Lawrence St \& Willoughby St & 323 & 0.002593\\
+ Lafayette St \& E 8 St & 293 & 0.002592\\[1ex] 
  \hline
  \end{tabular}
  \end{table}
@@ -114,37 +171,41 @@ For the MMD implementation of page rank, two separate dot files were created as 
  \begin{table}[h!]
 \caption{Page Rank Results for Stations (No Duplicate Edges)}
 \centering
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c||} 
  \hline
- Station & Page Rank \\ [0.5ex] 
+ Station Name & Station ID & Page Rank \\ [0.5ex] 
  \hline\hline
- 151 & 0.002991\\ 
- 519 & 0.002912\\
- 497 & 0.0028985\\ 
- 532 & 0.002761\\
- 499 & 0.002698\\
- 387 & 0.002625\\
- 251 & 0.002610\\
- 402 & 0.0025997\\
- 323 & 0.002593\\
- 293 & 0.002592\\[1ex] 
+ Cleveland Pl \& Spring St & 151 & 0.002991\\ 
+ Pershing Square N & 519 & 0.002912\\
+ E 17 St \& Broadway & 497 & 0.0028985\\ 
+  S 5 Pl \& S 4 St & 532 & 0.002761\\
+ Broadway \& W 60 St & 499 & 0.002698\\
+ Centre St \& Chambers St & 387 & 0.002625\\
+ Mott St \& Prince St & 251 & 0.002610\\
+ Broadway \& E 22 St & 402 & 0.0025997\\
+ Lawrence St \& Willoughby St & 323 & 0.002593\\
+ Lafayette St \& E 8 St & 293 & 0.002592\\[1ex] 
  \hline
  \end{tabular}
  \end{table}
- \textbf{Comparison of results:}
- \newline
-	For the top ten results of the trips graphs with duplicate edges, there was a 70\% match in the stations between the two methods we implemented - stations 151, 519, 497, 499, 387, 402, and 293. The three dissimilarities that occurred were attributed to the random walk aspect of the two algorithms and the influence of the multiple edges on page rank. Although the ranking position for the stations were not always the same, we found it sufficient to approximate the top ten stations for our purposes and so the order does not affect our decisions as far as which stations are the most frequented by customers. It was interesting to note, however, that the bottom ten stations (the least frequented stations) had the same IDs and rankings for the two methods. These were stations  3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636.
- \newline
-When it came to the graphs without duplicate edges, our results were a 100\% match in both rankings and station IDs. The top ten stations were 51, 519, 497, 532, 499, 387, 251, 402, 323, and 293. The bottom ten stations were the same as in the previous example, stations 3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636. The similarity between the two page rank methods used for this graph case reveals a potential downside to using the original data with duplicate edges as it produces less consistent rankings depending on the method used compared to singly linked graphs. 
-\newline
-\newline
- \textbf{Conclusions:}
- \newline
-	Based on our results, it seems that stations 151, 519, 497, 499, 387, 402, and 293 appear in the results for both the multidigraph and digraph cases when using NetworkX’s page rank function as well as the MDD implementation of page rank. For the sake of completeness, we can also assume that station 253 , 532, and 323 form a part of this grouping based on the digraph case which produced the same results for both methods. Given their high level of importance in the CitiBikes network, these ten stations are prime candidates for expansion and upgrades. 
- \newline
-Finally, stations 3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636 repeatedly appeared as the least frequented destinations for customers. This suggests that CitiBikes could benefit from retiring these stations to reduce maintenance costs and allocate resources to more frequented stations. 
+
+	For the top ten results of the trips graphs with duplicate edges, there was a 70\% match in the stations between the two methods we implemented - stations 151 (Cleveland Pl \& Spring St), 519 (E 42 St \& Vanderbilt Ave), 497 (E 17 St \& Broadway), 499 (Broadway \& W 60 St), 387 (Centre St \& Chambers St), 402 (Broadway \& E 22 St), and 293 (Lafayette St \& E 8 St). The three dissimilarities that occurred were attributed to the random walk aspect of the two algorithms and the influence of the multiple edges on page rank. Although the ranking position for the stations were not always the same, we found it sufficient to approximate the top ten stations for our purposes and so the order does not affect our decisions as far as which stations are the most frequented by customers. It was interesting to note, however, that the bottom ten stations (the least frequented stations) had the same IDs and rankings for the two methods. These were stations  3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636. 
+ \par
+	When it came to the graphs without duplicate edges, our results were a 100\% match in both rankings and station IDs. The top ten stations were 151, 519, 497, 532, 499, 387, 251, 402, 323, and 293. The bottom ten stations were the same as in the previous example, stations 3468 (NYCBS Depot - STY - Garage 4), 3017 (NYCBS Depot - FAR), 3240 (NYCBS Depot BAL - DYR), 3014 (E.T. Bike-In Movie Valet Station), 3450 (Penn Station Valet - Valet Scan), 3485 (NYCBS Depot - RIS), 3506 (Lexington Ave \& E 120 St), 3557 (40 Ave \& 9 St), 3607 (31 Ave \& 14 St), and 3636 (Expansion Warehouse 333 Johnson Ave). The similarity between the two page rank methods used for this graph case reveals a potential downside to using the original data with duplicate edges as it produces less consistent rankings depending on the method used compared to singly linked graphs. 
+ \par
+ Based on our results, it seems that stations 151 (Cleveland Pl \& Spring St), 519 (E 42 St \& Vanderbilt Ave), 497 (E 17 St \& Broadway), 499 (Broadway \& W 60 St), 387 (Centre St \& Chambers St), 402 (Broadway \& E 22 St), and 293 (Lafayette St \& E 8 St) appear in the results for both the multidigraph and digraph cases when using NetworkX’s page rank function as well as the MDD implementation of page rank. For the sake of completeness, we can also assume that station 253, 532, and 323 form a part of this grouping based on the digraph case which produced the same results for both methods. Given their high level of importance in the CitiBikes network, these ten stations are prime candidates for expansion and upgrades. 
+ \par
+Finally, stations 3468 (NYCBS Depot - STY - Garage 4), 3017 (NYCBS Depot - FAR), 3240 (NYCBS Depot BAL - DYR), 3014 (E.T. Bike-In Movie Valet Station), 3450 (Penn Station Valet - Valet Scan), 3485 (NYCBS Depot - RIS), 3506 (Lexington Ave \& E 120 St), 3557 (40 Ave \& 9 St), 3607 (31 Ave \& 14 St), and 3636 (Expansion Warehouse 333 Johnson Ave) repeatedly appeared as the least frequented destinations for customers. This suggests that CitiBikes could benefit from retiring these stations to reduce maintenance costs and allocate resources to more frequented stations. 
+\par
+Limitations: 
+We were only able to use a small portion of Citi Bike's trip history given that the data contained trips from 2013 to 2017. It's important to note that the trips were all made in the NYC area,this means our conclusions are only applicable to bike stations for this specific location and not generalizable to any other Citi Bike locations. We were also unable to visualize the  network of stations due to node limitations in the \emph{graphviz} package. The maximum number of nodes that graphviz allows is 200 and the maximum number of edges is 400. Even when restricting the node and edge data to a single station, the number of edges always surpassed this threshold, prohibiting us from visualizing the realtionships between stations in the network.
+ \subsection{Clustering Results}
+
 
 \section{Future Works}
+The clustering and PageRank analysis of Citibike data offer several directions for future work. First, the dataset we utilized only sampled a very small part of the Citibike data with a limited time frame, so future studies could take a look at the dataset as a whole to identify certain historical trends and usage patterns. Another potential area of focus is integrating our Citibike data with other related data sources such as weather forecasts, traffic patterns, social media, etc. to see if there are any other external factors that could potentially impact bikesharing usage and behavior. Lastly, we could look at typical user demographics of each area.
+
+
 
 
 \end{document}
