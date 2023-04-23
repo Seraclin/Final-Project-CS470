@@ -89,6 +89,49 @@ For the NetworkX implementation of page rank,  the start and end station IDs for
  \end{tabular}
  \end{table}
 For the MMD implementation of page rank, two separate dot files were created as input. One is a dot file with all 473,556 edges between the 840 nodes and the other contains no duplicate edges, reducing the number of edges to 107,649. The page rank scores (with dampening factor 0.85 and max iteration 1000) were sorted in descending order and the station IDs were sorted in ascending order. The top 10 results for the graphs with and without duplicate edges can be found in the tables below: 
+
+\begin{table}[h!]
+\caption{Page Rank Results for Stations (Duplicate Edges)}
+\centering
+ \begin{tabular}{||c c||} 
+ \hline
+ Station & Page Rank \\ [0.5ex] 
+ \hline\hline
+ 151 & 0.002991\\ 
+ 519 & 0.002913\\
+ 497 & 0.00288951\\ 
+ 532 & 0.002761\\
+ 499 & 0.002670\\
+ 387 & 0.002626\\
+ 251 & 0.002610\\
+ 402 & 0.0025997\\
+ 323 & 0.002593\\
+ 293 & 0.002592\\[1ex] 
+ \hline
+ \end{tabular}
+ \end{table}
+ 
+ \begin{table}[h!]
+\caption{Page Rank Results for Stations (No Duplicate Edges)}
+\centering
+ \begin{tabular}{||c c||} 
+ \hline
+ Station & Page Rank \\ [0.5ex] 
+ \hline\hline
+ 151 & 0.002991\\ 
+ 519 & 0.002912\\
+ 497 & 0.0028985\\ 
+ 532 & 0.002761\\
+ 499 & 0.002698\\
+ 387 & 0.002625\\
+ 251 & 0.002610\\
+ 402 & 0.0025997\\
+ 323 & 0.002593\\
+ 293 & 0.002592\\[1ex] 
+ \hline
+ \end{tabular}
+ \end{table}
+
 \section{Future Works}
 
 
