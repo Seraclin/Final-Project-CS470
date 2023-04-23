@@ -30,12 +30,16 @@ I did not collaborate with anyone, receive any assistance nor use any external s
 
 \section{Problem}
 %  Describe the problem that you are trying to solve in this project, and the goals you want to achieve
-
+\textbf{Page Rank: Upgrade and Expand or Retire?}
+\newline 
+Our team hopes to classify the relative importance/popularity of different bike stations given in the data based on how frequently they appear as start and end destinations for different trips. There were two methods to approach this. First, we could construct a MultiDigraph from the data which would allow for multiple edges between nodes (i.e., five people took a trip from station 380 to 250). This would give a more realistic outcome about a station's usage based on user transactions/trips. However, including these edges may be redundant since they represent the same path/route and will result in the page rank scores of each station being lower. The second method is to use a DiGraph which ignores multiple edges between nodes. This means that it only adds an edge between nodes once, even if the edge appears multiple times in the data. This would result in a page rank outcome based on the stations’  interconnectivity rather than how many customers frequent a specific route. This would allow us to observe which stations have the most in-coming links/trips from other stations and how this impacts their importance in the network. We expect there to be a group of stations with higher levels of importance than others and hope to use this information to determine which stations should be expanded/upgraded to increase customer usage. This information could also be used to determine which stations are less frequented and should be removed from the network (i.e., retiring the station).
 \section{Dataset}
 
 \section{Preprocessing}
 
 \section{Methods}
+ 
+
 
 \section{Results}
 
