@@ -46,7 +46,49 @@ We decided to use the page rank function from NetworkX since it can take both Di
 
 
 \section{Results}
+For the NetworkX implementation of page rank,  the start and end station IDs for each trip were obtained from the data set. These were stored in a tuple of form (start, end) and appended to a list of edges for later use. Once all trips were stored, the edges were added to either a NetworkX Digraph or MultiDigraph. The main difference between the two is that whole MultiDiGraph allows for multiple edges between nodes, DiGraph only counts the appearance of an edge once. The resulting graph was then passed to the NetworkX page rank function with dampening parameter of 0.85 and max iterations 1000. The page rank scores  were sorted in descending order and the station IDs were sorted in ascending order. The top 10 results for the graphs with and without duplicate edges can be found in the tables below: 
+\begin{table}[h!]
+\caption{Page Rank Results for Stations (Duplicate Edges)}
+\centering
+ \begin{tabular}{||c c||} 
+ \hline
+ Station & Page Rank \\ [0.5ex] 
+ \hline\hline
+ 519 & 0.00629\\ 
+ 497 & 0.00563\\
+ 426 & 0.00503\\ 
+ 435 & 0.00489\\
+ 293 & 0.00475\\
+ 387 & 0.00468\\
+ 402 & 0.004619\\
+ 151 & 0.004617\\
+ 499 & 0.00430\\
+ 285 & 0.00425\\[1ex] 
+ \hline
+ \end{tabular}
+ \end{table}
 
+ \begin{table}[h!]
+\caption{Page Rank Results for Stations (No Duplicate Edges)}
+\centering
+ \begin{tabular}{||c c||} 
+ \hline
+ Station & Page Rank \\ [0.5ex] 
+ \hline\hline
+ 151 & 0.00298\\ 
+ 519 & 0.00291\\
+ 497 & 0.00289\\ 
+ 532 & 0.00276\\
+ 499 & 0.00270\\
+ 387 & 0.00262\\
+ 251 & 0.00260\\
+ 402 & 00260\\
+ 323 & 0.00259\\
+ 293 & 0.002586\\[1ex] 
+ \hline
+ \end{tabular}
+ \end{table}
+For the MMD implementation of page rank, two separate dot files were created as input. One is a dot file with all 473,556 edges between the 840 nodes and the other contains no duplicate edges, reducing the number of edges to 107,649. The page rank scores (with dampening factor 0.85 and max iteration 1000) were sorted in descending order and the station IDs were sorted in ascending order. The top 10 results for the graphs with and without duplicate edges can be found in the tables below: 
 \section{Future Works}
 
 
