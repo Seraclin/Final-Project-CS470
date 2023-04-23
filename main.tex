@@ -136,6 +136,14 @@ For the MMD implementation of page rank, two separate dot files were created as 
 	For the top ten results of the trips graphs with duplicate edges, there was a 70\% match in the stations between the two methods we implemented - stations 151, 519, 497, 499, 387, 402, and 293. The three dissimilarities that occurred were attributed to the random walk aspect of the two algorithms and the influence of the multiple edges on page rank. Although the ranking position for the stations were not always the same, we found it sufficient to approximate the top ten stations for our purposes and so the order does not affect our decisions as far as which stations are the most frequented by customers. It was interesting to note, however, that the bottom ten stations (the least frequented stations) had the same IDs and rankings for the two methods. These were stations  3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636.
  \newline
 When it came to the graphs without duplicate edges, our results were a 100\% match in both rankings and station IDs. The top ten stations were 51, 519, 497, 532, 499, 387, 251, 402, 323, and 293. The bottom ten stations were the same as in the previous example, stations 3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636. The similarity between the two page rank methods used for this graph case reveals a potential downside to using the original data with duplicate edges as it produces less consistent rankings depending on the method used compared to singly linked graphs. 
+\newline
+\newline
+ \textbf{Conclusions:}
+ \newline
+	Based on our results, it seems that stations 151, 519, 497, 499, 387, 402, and 293 appear in the results for both the multidigraph and digraph cases when using NetworkX’s page rank function as well as the MDD implementation of page rank. For the sake of completeness, we can also assume that station 253 , 532, and 323 form a part of this grouping based on the digraph case which produced the same results for both methods. Given their high level of importance in the CitiBikes network, these ten stations are prime candidates for expansion and upgrades. 
+ \newline
+Finally, stations 3468, 3017, 3240, 3014, 3450, 3485, 3506, 3557, 3607, and 3636 repeatedly appeared as the least frequented destinations for customers. This suggests that CitiBikes could benefit from retiring these stations to reduce maintenance costs and allocate resources to more frequented stations. 
+
 \section{Future Works}
 
 
