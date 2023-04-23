@@ -38,7 +38,11 @@ Our team hopes to classify the relative importance/popularity of different bike 
 \section{Preprocessing}
 
 \section{Methods}
- 
+\textbf{Page Rank: NetworkX vs. MDD Implementation}
+\newline
+We used PageRank to rank the stations by level of importance in the network. Page Rank is frequently used to determine the importance of web pages based on the number and weight of incoming-links from other web pages. In our case, stations serve as web pages and trips serve as links between them. Stations with more incoming-links are expected to have a higher ranking; however, links from stations that have high rankings will boost the page rank score of the stations they point to.
+\newline
+We decided to use the page rank function from NetworkX since it can take both DiGraphs and MultiDiGraphs as inputs. By default, the page rank algorithm in NetworkX uses a dampening factor of 0.85 and a maximum of 1000 iterations. For comparison, we also used the page rank implementation from the Mining of Massive Datasets (MMD) textbook to obtain page rank scores for each station. Similar to the NetworkX page rank implementation, we used a dampening factor of 0.85  and a maximum of 1000 iterations.
 
 
 \section{Results}
