@@ -1,5 +1,5 @@
 This contains instructions on how to run our code on the Citi Bike data
-Please make sure you have the following packages installed: networkx, pandas, argparse, & skitlearn
+Please make sure you have the following packages installed: networkx, pandas, argparse, & sklearn
 
 For clustering, please ensure that the data and the Jupyter notebook file are in the same directory and run the preprocessing2.ipynb Jupyter notebook 
 
