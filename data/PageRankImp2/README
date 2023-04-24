@@ -1,4 +1,4 @@
-To run, navigate to where main.py is located, copy input .dot file to dataset folder, and type 'python main.py'
-Results are stored at the result folder, in txt files, graphs are located in img folder in pdf files
+To run, navigate to where main.py is located, make sure .dot files are located in subfolder /dataset, and type 'python main.py' as a command.
+Results are stored at the result folder, in csv files.
 
-This is my original work by Ruilin Chen, inspired by and built upon the article "https://towardsdatascience.com/pagerank-3c568a7d2332"
+Inspired by and built upon the article "https://towardsdatascience.com/pagerank-3c568a7d2332"
