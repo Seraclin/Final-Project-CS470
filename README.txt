@@ -1,4 +1,11 @@
-This contains instructions on how to run our code on the Citi Bike data
+This project is the work of Samantha Lin, Matthew Joesoep, Yuritzy Ramos, and Ruilin Chen.
+
+This contains instructions on how to run our code on the Citi Bike data.
+
+To find our presentation, please go to this link: https://www.youtube.com/watch?v=8SKBwgTPDI4
+Our dataset can be found at: https://www.kaggle.com/datasets/fatihb/citibike-sampled-data-2013-2017]
+
+Our code assumes you have some common Python packages installed on your system, including Pandas, NumPy, Scikit-Learn, Graphviz, NetworkX, and others.
 
 For clustering, please ensure that the data and the Jupyter notebook file are in the same directory and run the preprocessing2.ipynb Jupyter notebook 
 
