@@ -1,3 +1,4 @@
+# Yuritzy Ramos, Samantha Lin, Ruilin Chen, Matthew Joesoep
 import networkx as nx
 import pandas as pd
 import argparse
